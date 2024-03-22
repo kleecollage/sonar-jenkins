@@ -1,8 +1,8 @@
 pipeline {
   agent any
   tools {
-    // Usamos la instalción de node que hemos definido antes
-    // Esto además va a hacer que "node" esté en el PATH
+    // EN: We use the previously defined node installation. This adds node to the PATH as well
+    // ES: Usamos la instalación de node definida antes. Esto además añade node al PATH
     nodejs 'node20'
   }
   environment {
