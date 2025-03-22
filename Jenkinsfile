@@ -3,7 +3,7 @@ pipeline {
   tools {
     // EN: We use the previously defined node installation. This adds node to the PATH as well
     // ES: Usamos la instalación de node definida antes. Esto además añade node al PATH
-    nodejs 'node20'
+    nodejs 'node23'
   }
   environment {
     scannerHome = tool name: 'sonar-scanner'
@@ -11,17 +11,17 @@ pipeline {
   stages {
     stage('Scan') {
       steps {
-        withSonarQubeEnv(installationName: 'mySonar') { 
+        withSonarQubeEnv(installationName: 'mySonar') {
           sh '${scannerHome}/bin/sonar-scanner'
         }
       }
     }
-    
+
     stage('Wait for quality Gate') {
       steps {
         timeout(time: 2, unit: 'MINUTES') {
             waitForQualityGate abortPipeline: true
-        }  
+        }
       }
     }
   }
